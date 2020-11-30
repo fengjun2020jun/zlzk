@@ -1,0 +1,15 @@
+server:
+  port: 9000
+eureka:
+  instance:
+    hostname: zlzk-eureka
+    appname: zlzk-eureka
+  client:
+    registerWithEureka: false  # 单点的时候设置为 false 禁止注册自身
+    fetchRegistry: false #不拉取其他节点
+    serviceUrl:
+      defaultZone: http://127.0.0.1:9000/eureka
+  server:
+    enable-self-preservation: false #关闭自我保护
+    eviction-interval-timer-in-ms: 3000 #清理间隔(毫秒)
+

@@ -1,0 +1,41 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: user-service
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC
+    username: root
+    password: root
+mybatis:
+  mapperLocations: classpath:mapper/*.xml
+  type-aliases-package: com.zlzk.domain
+mapper:
+  mappers:
+  not-empty: false
+  identity: MYSQL
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:9000/eureka  # 注册到 eureka
+  instance:
+    prefer-ip-address: false
+    # Eureka客户端向服务心跳的时间间隔，默认是30秒
+    lease-renewal-interval-in-seconds: 3
+    # Eureka服务端在收到一次心跳后等待时间上限，默认是90s，超时将剔除该微服务
+    lease-expiration-duration-in-seconds: 10
+logging:
+  level:
+    root: INFO
+    com.zlzk.user.mapper: debug
+springfox:
+  documentation:
+    swagger-ui:
+      enabled: true
