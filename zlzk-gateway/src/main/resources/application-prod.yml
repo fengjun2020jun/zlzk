@@ -1,0 +1,27 @@
+server:
+  port: 8888
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: zlzk-user
+          uri: lb://zlzk-user
+          predicates:
+            - Path=/api/user/**
+        - id: message-provider-route
+          uri: lb://message-provider
+          predicates:
+            - Path=/message-provider/**
+  application:
+    name: cloud-gateway
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:9000/eureka  # 注册到 eureka
+  instance:
+    prefer-ip-address: true
+springfox:
+  documentation:
+    swagger-ui:
+      enabled: true

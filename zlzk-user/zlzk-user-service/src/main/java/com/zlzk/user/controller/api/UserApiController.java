@@ -1,6 +1,5 @@
-package com.zlzk.user.controller;
+package com.zlzk.user.controller.api;
 
-import com.zlzk.common.exception.ApiException;
 import com.zlzk.common.exception.Result;
 import com.zlzk.user.domain.User;
 import com.zlzk.user.service.UserService;
@@ -12,8 +11,6 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,10 +23,10 @@ import java.util.List;
  * @date 2020/11/29 13:04
  */
 @RestController
-@RequestMapping(value = "rpc/userClient")
+@RequestMapping(value = "api/user")
 @Api("用户相关接口")
 @Slf4j
-public class UserController {
+public class UserApiController {
 
     @Autowired
     UserService userService;
@@ -41,12 +38,6 @@ public class UserController {
                     content = @Content(schema = @Schema(implementation = User.class)))})
     @GetMapping(value = "users")
     public Result<List<User>> getUser(){
-        throw new ApiException(HttpStatus.FORBIDDEN.value(),"test");
-      /*  try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        return userService.getUser();*/
+        return userService.getUser();
     }
 }
